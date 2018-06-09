@@ -34,20 +34,20 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="name" type="text" class="validate">
+                        <input id="name" type="text">
                         <label for="name">Name (Required)</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="image" type="text" class="validate">
+                        <input id="image" type="text">
                         <label for="image">Link to Photo Image (Required)</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
+                        <select id="q1">
+                            <option value="0" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -59,8 +59,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
+                        <select id="q2">
+                            <option value="0" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -72,8 +72,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
+                        <select id="q3">
+                            <option value="0" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -85,8 +85,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
+                        <select id="q4">
+                            <option value="0" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -98,8 +98,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
+                        <select id="q5">
+                            <option value="0" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -111,8 +111,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
+                        <select id="q6">
+                            <option value="0" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -124,8 +124,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
+                        <select id="q7">
+                            <option value="0" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -137,8 +137,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
+                        <select id="q8">
+                            <option value="0" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -150,8 +150,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
+                        <select id="q9">
+                            <option value="0" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -163,8 +163,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
+                        <select id="q10">
+                            <option value="0" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -175,7 +175,7 @@
                     </div>
                 </div>
                 <div>
-                    <button class="btn waves-effect waves-light deep-purple lighten-1" type="submit" name="action">Submit
+                    <button id="submit-btn" class="btn waves-effect waves-light deep-purple lighten-1" type="submit" name="action">Submit
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
@@ -190,10 +190,49 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <script>$(document).ready(function(){
-        $('select').formSelect();
-        $(".dropdown-content>li>span").css("color", red);
-      });
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("select").formSelect();
+
+            $("#submit-btn").on("click", function(event){
+
+                event.preventDefault();
+
+                var surveyResponse = {
+                    name: $("#name").val().trim(),
+                    image: $("#image").val().trim(),
+                    q1: $("#q1 option:selected").val(),
+                    q2: $("#q2 option:selected").val(),
+                    q3: $("#q3 option:selected").val(),
+                    q4: $("#q4 option:selected").val(),
+                    q5: $("#q5 option:selected").val(),
+                    q6: $("#q6 option:selected").val(),
+                    q7: $("#q7 option:selected").val(),
+                    q8: $("#q8 option:selected").val(),
+                    q9: $("#q9 option:selected").val(),
+                    q10: $("#q10 option:selected").val(),
+                }
+
+                console.log(surveyResponse);
+
+                $("#name").val("");
+                $("#image").val("");
+                $("select").val("0").formSelect();
+
+                $.post("/api/friendFinder", surveyResponse, function(data) {
+
+                    if (data) {
+                        alert("harro");
+                    } else {
+                        alert("Sorry you are on the wait list");
+                    }
+
+                    $("#name").val("");
+                    $("#image").val("");
+                    $("select").val("0").formSelect();
+                });
+            });
+        });
     </script>
 </body>
 </html>

@@ -7,8 +7,8 @@ module.exports = function(app) {
   });
 
   app.post("/api/friendFinder", function(req, res) {
-
- 
+    console.log(req.body);
+    res.json(true);
   });
   
 };
