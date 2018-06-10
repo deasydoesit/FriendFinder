@@ -8,33 +8,36 @@ module.exports = function(app) {
 
     app.post("/api/friendFinder", function(req, res) {
 
+        //calculate total score for submitted survey
         var total = req.body.scores.reduce(function(accumulator, current) {
             return accumulator + parseInt(current);
         }, 0);
-        req.body.total = total;
-        console.log("The total score for the survey is " + total)
 
-        var holder;
+        //add total score key/value pair to submitted survey object 
+        req.body.total = total;
+
+        //create variable index storing index of closest matched friend
         var index;
+        //create variable holder storing total score of closest matched friend
+        var holder;
         for (var i = 0; i < friends.length; i++) {
+            //identify difference between total score for submitted survey and friends from friends array
             var difference = Math.abs(total - friends[i].total);
             if (i === 0) {
-                holder = difference;
+                //temporarily store first matched friend
                 index = i;
+                holder = friends[i].total;
             } else if (difference < holder) {
-                holder = difference;
                 index = i;
+                holder = friends[i].total
             }
         }
-
-        console.log("The difference between the total score for the survey and the next cloesest is " + holder);
-        console.log("The index of the closest match is " + index);
-        console.log(friends[index]);
         
+        //return identified friend
         res.json(friends[index]);
-        friends.push(req.body);
 
-        console.log(friends);
+        //add submitted survey object to friends array
+        friends.push(req.body);
     });
   
 };
