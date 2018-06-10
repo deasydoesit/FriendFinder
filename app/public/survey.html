@@ -35,19 +35,19 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="name" type="text" class="validate" required="" aria-required="true">
-                        <label for="name">Name (Required)</label>
+                        <label for="name">Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="image" type="text" class="validate" required="" aria-required="true">
-                        <label for="image">Link to Photo Image (Required)</label>
+                        <label for="image">Link to Photo Image</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="q1">
-                            <option value="0" disabled selected>Choose your option</option>
+                        <select id="q1" required="" aria-required="true">
+                            <option value="" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -59,8 +59,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="q2">
-                            <option value="0" disabled selected>Choose your option</option>
+                        <select id="q2" required="" aria-required="true">
+                            <option value="" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -72,8 +72,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="q3">
-                            <option value="0" disabled selected>Choose your option</option>
+                        <select id="q3" required="" aria-required="true">
+                            <option value="" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -85,8 +85,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="q4">
-                            <option value="0" disabled selected>Choose your option</option>
+                        <select id="q4" required="" aria-required="true">
+                            <option value="" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -98,8 +98,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="q5">
-                            <option value="0" disabled selected>Choose your option</option>
+                        <select id="q5" required="" aria-required="true">
+                            <option value="" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -111,8 +111,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="q6">
-                            <option value="0" disabled selected>Choose your option</option>
+                        <select id="q6" required="" aria-required="true">
+                            <option value="" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -124,8 +124,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="q7">
-                            <option value="0" disabled selected>Choose your option</option>
+                        <select id="q7" required="" aria-required="true">
+                            <option value="" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -137,8 +137,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="q8">
-                            <option value="0" disabled selected>Choose your option</option>
+                        <select id="q8" required="" aria-required="true">
+                            <option value="" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -150,8 +150,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="q9">
-                            <option value="0" disabled selected>Choose your option</option>
+                        <select id="q9" required="" aria-required="true">
+                            <option value="" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -163,8 +163,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select id="q10">
-                            <option value="0" disabled selected>Choose your option</option>
+                        <select id="q10" required="" aria-required="true">
+                            <option value="" disabled selected>Choose your option</option>
                             <option value="1">1 (Strongly Disagree)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -202,6 +202,12 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $("select").formSelect();
+            $("select[required]").css({
+                display: "inline",
+                height: 0,
+                padding: 0,
+                width: 0
+            });
             $(".modal").modal();
             $("form").submit(function(event) {
                 event.preventDefault();
