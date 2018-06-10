@@ -201,28 +201,23 @@
                 var surveyResponse = {
                     name: $("#name").val().trim(),
                     image: $("#image").val().trim(),
-                    q1: $("#q1 option:selected").val(),
-                    q2: $("#q2 option:selected").val(),
-                    q3: $("#q3 option:selected").val(),
-                    q4: $("#q4 option:selected").val(),
-                    q5: $("#q5 option:selected").val(),
-                    q6: $("#q6 option:selected").val(),
-                    q7: $("#q7 option:selected").val(),
-                    q8: $("#q8 option:selected").val(),
-                    q9: $("#q9 option:selected").val(),
-                    q10: $("#q10 option:selected").val(),
-                }
-
-                console.log(surveyResponse);
-
-                $("#name").val("");
-                $("#image").val("");
-                $("select").val("0").formSelect();
+                    scores: [ $("#q1 option:selected").val(),
+                              $("#q2 option:selected").val(),
+                              $("#q3 option:selected").val(),
+                              $("#q4 option:selected").val(),
+                              $("#q5 option:selected").val(),
+                              $("#q6 option:selected").val(),
+                              $("#q7 option:selected").val(),
+                              $("#q8 option:selected").val(),
+                              $("#q9 option:selected").val(),
+                              $("#q10 option:selected").val() ]
+                };
 
                 $.post("/api/friendFinder", surveyResponse, function(data) {
 
                     if (data) {
                         alert("harro");
+                        console.log(data);
                     } else {
                         alert("Sorry you are on the wait list");
                     }
@@ -230,6 +225,7 @@
                     $("#name").val("");
                     $("#image").val("");
                     $("select").val("0").formSelect();
+
                 });
             });
         });
