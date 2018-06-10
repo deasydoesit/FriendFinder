@@ -175,7 +175,7 @@
                     </div>
                 </div>
                 <div>
-                    <button id="submit-btn" class="btn waves-effect waves-light deep-purple lighten-1" type="submit" name="action">Submit
+                    <button id="submit-btn" class="btn waves-effect waves-light deep-purple lighten-1" type="submit" name="action">Find Your Friend
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
@@ -188,11 +188,21 @@
             <a href="/api/friends">API Friends List</a>
         </div>
     </footer>
+    <div id="modal1" class="modal">
+        <div class="modal-content center-align center">
+            <h4></h4>
+            <img></img>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $("select").formSelect();
+            $(".modal").modal();
 
             $("#submit-btn").on("click", function(event){
 
@@ -216,10 +226,13 @@
                 $.post("/api/friendFinder", surveyResponse, function(data) {
 
                     if (data) {
-                        alert("harro");
-                        console.log(data);
+                       
+                        $(".modal-content h4").text(data.name);
+                        $(".modal-content img").attr("src", data.image);
+
+                        $(".modal").modal("open");
                     } else {
-                        alert("Sorry you are on the wait list");
+                        alert("Uh Oh something went wrong X_X");
                     }
 
                     $("#name").val("");

@@ -11,7 +11,7 @@ module.exports = function(app) {
         var total = req.body.scores.reduce(function(accumulator, current) {
             return accumulator + parseInt(current);
         }, 0);
-
+        req.body.total = total;
         console.log("The total score for the survey is " + total)
 
         var holder;
@@ -30,7 +30,7 @@ module.exports = function(app) {
         console.log("The difference between the total score for the survey and the next cloesest is " + holder);
         console.log("The index of the closest match is " + index);
         console.log(friends[index]);
-
+        
         res.json(friends[index]);
         friends.push(req.body);
 
