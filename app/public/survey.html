@@ -34,13 +34,13 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="name" type="text">
+                        <input id="name" type="text" class="validate" required="" aria-required="true">
                         <label for="name">Name (Required)</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="image" type="text">
+                        <input id="image" type="text" class="validate" required="" aria-required="true">
                         <label for="image">Link to Photo Image (Required)</label>
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                     </div>
                 </div>
                 <div>
-                    <button id="submit-btn" class="btn waves-effect waves-light deep-purple lighten-1" type="submit" name="action">Find Your Friend
+                    <button id="submit-btn" class="btn waves-effect waves-light deep-purple lighten-1" type="submit" name="action" >Find Your Friend
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
@@ -194,7 +194,7 @@
             <img></img>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            <a href="/survey" class="modal-close waves-effect waves-green btn-flat">Agree</a>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -203,11 +203,8 @@
         $(document).ready(function(){
             $("select").formSelect();
             $(".modal").modal();
-
-            $("#submit-btn").on("click", function(event){
-
+            $("form").submit(function(event) {
                 event.preventDefault();
-
                 var surveyResponse = {
                     name: $("#name").val().trim(),
                     image: $("#image").val().trim(),
@@ -222,11 +219,8 @@
                               $("#q9 option:selected").val(),
                               $("#q10 option:selected").val() ]
                 };
-
                 $.post("/api/friendFinder", surveyResponse, function(data) {
-
                     if (data) {
-                       
                         $(".modal-content h4").text(data.name);
                         $(".modal-content img").attr("src", data.image);
 
@@ -234,13 +228,11 @@
                     } else {
                         alert("Uh Oh something went wrong X_X");
                     }
-
                     $("#name").val("");
                     $("#image").val("");
                     $("select").val("0").formSelect();
-
                 });
-            });
+            }); 
         });
     </script>
 </body>
